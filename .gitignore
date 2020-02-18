@@ -133,6 +133,3 @@ dmypy.json
 
 #Macfile
 .DS_Store
-
-#Project related
-data/
