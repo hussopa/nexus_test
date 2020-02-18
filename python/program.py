@@ -1,6 +1,8 @@
 import random
 import string
 import argparse
+import shutil
+import os
 
 
 def createRandomText(len):
@@ -17,9 +19,13 @@ def createTextRow():
 
 
 def main(arguments):
-    for _ in range(arguments[0])
-    with open("{0}.txt".format(createFilename()), "a") as f:
-        f.write(createTextRow())
+    if arguments.flushdata:
+        shutil.rmtree("data")
+        os.makedirs("data")
+
+    for _ in range(arguments.filecount):
+        with open("data/{0}.txt".format(createFilename()), "a") as f:
+            f.write(createTextRow())
 
 
 if __name__ == '__main__':
@@ -29,9 +35,16 @@ if __name__ == '__main__':
 
     parser.add_argument("--filecount",
                         type=int,
-                        required=True,
+                        required=False,
                         default=1,
                         help='Specify amount of files to create')
 
+    parser.add_argument("--flushdata",
+                        type=bool,
+                        required=False,
+                        default=True,
+                        help='Specify if "data" is flushed')
+
     arguments = parser.parse_args()
+    print(arguments)
     main(arguments)
