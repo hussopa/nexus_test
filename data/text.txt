@@ -2,3 +2,4 @@ This is text_file
 second line
 line
 again a line
+new line
